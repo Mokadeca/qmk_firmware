@@ -47,6 +47,9 @@ void tap_dance_pair_reset(tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
         wait_ms(TAP_CODE_DELAY);
         unregister_code16(pair->kc1);
+        #ifdef REPEAT_KEY_ENABLE
+        set_last_keycode(pair->kc1);
+        #endif
     } else if (state->count == 2) {
         unregister_code16(pair->kc2);
     }
